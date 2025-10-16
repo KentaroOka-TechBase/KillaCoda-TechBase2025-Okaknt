@@ -1,5 +1,5 @@
 {
-  "name": "next-env-demo",
+  "name": "scenario1-Nextjs-environment",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",

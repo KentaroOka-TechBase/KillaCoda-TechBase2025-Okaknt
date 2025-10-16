@@ -1,6 +1,26 @@
 {
- "title": "まずはテスト",
- "backend": {
-   "imageid": "ubuntu"
- }
+  "title": "Next.js環境変数の理解演習（NEXT_PUBLIC編）",
+  "description": "Next.jsで環境変数を扱う際に、NEXT_PUBLICが付いていないとクライアント側で参照できないことを学びます。",
+  "details": {
+    "intro": { "text": "intro.md" },
+    "steps": [
+      { "title": "環境をセットアップする", "text": "step1.md" },
+      { "title": "環境変数を確認して動作を比較する", "text": "step2.md" },
+      { "title": "NEXT_PUBLICを外した場合の挙動を確認する", "text": "step3.md" }
+    ],
+    "finish": { "text": "finish.md" }
+  },
+  "backend": { "imageid": "ubuntu:2004" },
+  "environment": { "uilayout": "terminal-terminal" },
+  "files": [{ "path": "/root/next-env-demo" }],
+  "scripts": {
+    "start": [
+      "echo '環境を初期化しています...'",
+      "apt update -y",
+      "apt install -y curl git nodejs npm",
+      "git clone https://github.com/your-username/next-env-demo.git /root/next-env-demo",
+      "cd /root/next-env-demo && npm install"
+    ]
+  },
+  "tasks": [{ "title": "Next.jsアプリを起動する", "command": "cd /root/next-env-demo && npm run dev" }]
 }
