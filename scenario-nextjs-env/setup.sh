@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euxo pipefail
 
 echo "===== 環境初期化開始 ====="
