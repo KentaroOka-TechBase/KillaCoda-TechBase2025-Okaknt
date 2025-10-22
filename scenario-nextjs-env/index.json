@@ -2,30 +2,55 @@
   "title": "Next.js環境変数の理解演習（NEXT_PUBLIC編）",
   "description": "Next.jsで環境変数を扱う際に、NEXT_PUBLICが付いていないとクライアント側で参照できないことを学びます。",
   "details": {
-    "intro": { "text": "intro.md" },
+    "intro": {
+      "text": "intro.md"
+    },
     "steps": [
-      { "title": "環境をセットアップする", "text": "step1.md" },
-      { "title": "環境変数を確認して動作を比較する", "text": "step2.md" },
-      { "title": "NEXT_PUBLICを外した場合の挙動を確認する", "text": "step3.md" }
+      {
+        "title": "環境をセットアップする",
+        "text": "step1.md"
+      },
+      {
+        "title": "環境変数を確認して動作を比較する",
+        "text": "step2.md"
+      },
+      {
+        "title": "NEXT_PUBLICを外した場合の挙動を確認する",
+        "text": "step3.md"
+      }
     ],
-    "finish": { "text": "finish.md" }
+    "finish": {
+      "text": "finish.md"
+    }
   },
-  "backend": { "imageid": "ubuntu:2004" },
-  "environment": { "uilayout": "terminal-terminal" },
-  "files": [{ "path": "/root/next-env-demo" }],
+  "backend": {
+    "imageid": "ubuntu:2004"
+  },
+  "environment": {
+    "uilayout": "terminal-terminal"
+  },
+  "files": [
+    {
+      "path": "/root/next-env-demo"
+    }
+  ],
   "scripts": {
     "start": [
-      "echo '環境を初期化しています...'",
-      "export DEBIAN_FRONTEND=noninteractive",
+      "echo '===== 環境初期化開始 ====='",
       "apt update -y",
       "apt install -y curl git nodejs npm",
-      "rm -rf /root/next-env-demo",
-      "git clone https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt /root/next-env-demo",
+      "echo '===== GitHubからクローン中 ====='",
+      "git clone https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt /root/next-env-demo || echo 'Clone失敗'",
+      "echo '===== クローン完了 ====='",
       "cd /root/next-env-demo || exit 1",
-      "if [ -f package.json ]; then npm install; fi"
+      "if [ -f package.json ]; then npm install; fi",
+      "echo '===== 初期化完了 ====='"
     ]
   },
   "tasks": [
-    { "title": "Next.jsアプリを起動する", "command": "cd /root/next-env-demo && npm run dev" }
+    {
+      "title": "Next.jsアプリを起動する",
+      "command": "cd /root/next-env-demo && npm run dev"
+    }
   ]
 }
