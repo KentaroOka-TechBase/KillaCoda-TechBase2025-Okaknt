@@ -18,7 +18,7 @@
       "echo '環境を初期化しています...'",
       "apt update -y",
       "apt install -y curl git nodejs npm",
-      "git clone https://github.com/your-username/next-env-demo.git /root/next-env-demo",
+      "git clone https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt.git /root/next-env-demo",
       "cd /root/next-env-demo && npm install"
     ]
   },
