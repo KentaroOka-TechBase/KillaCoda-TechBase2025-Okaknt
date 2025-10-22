@@ -16,11 +16,16 @@
   "scripts": {
     "start": [
       "echo '環境を初期化しています...'",
+      "export DEBIAN_FRONTEND=noninteractive",
       "apt update -y",
       "apt install -y curl git nodejs npm",
-      "git clone https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt.git /root/next-env-demo",
-      "cd /root/next-env-demo && npm install"
+      "rm -rf /root/next-env-demo",
+      "git clone https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt /root/next-env-demo",
+      "cd /root/next-env-demo || exit 1",
+      "if [ -f package.json ]; then npm install; fi"
     ]
   },
-  "tasks": [{ "title": "Next.jsアプリを起動する", "command": "cd /root/next-env-demo && npm run dev" }]
+  "tasks": [
+    { "title": "Next.jsアプリを起動する", "command": "cd /root/next-env-demo && npm run dev" }
+  ]
 }
