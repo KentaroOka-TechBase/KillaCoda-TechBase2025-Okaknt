@@ -6,7 +6,7 @@ LOG_FILE="/var/log/setup.log"
 # セットアップ進行状況を表示するスクリプト
 # echo 文は英語化している（日本語を使うとエラーになるため）
 
-echo "💡 Displaying setup progress (Press Ctrl+C to stop)"
+echo " Displaying setup progress (Press Ctrl+C to stop)"
 echo "   Log file: $LOG_FILE"
 echo
 
@@ -29,5 +29,5 @@ done
 kill "$TAIL_PID" || true
 
 echo
-echo "✅ Setup completed successfully!"
+echo "Setup completed successfully!"
 echo "You can now run: cd /root/next-env-demo && npm run dev"

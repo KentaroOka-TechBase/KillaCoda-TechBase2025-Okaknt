@@ -16,7 +16,7 @@ echo "===== clone from GitHub ====="
 TMP_DIR="/tmp/kc-repo"
 rm -rf "$TMP_DIR" /root/next-env-demo || true
 # 非TTYでも進捗を出すために --progress を明示（gitはstderrに進捗を出す）
-git -c progress=true clone --depth=1 --progress \
+git clone --depth=1 --progress \
   https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt "$TMP_DIR"
 
 echo "===== Next.js Application Setting ====="
