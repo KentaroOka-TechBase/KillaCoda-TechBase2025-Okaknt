@@ -22,6 +22,7 @@ npm run dev
 found 0 vulnerabilities　というメッセージが表示されたら、以下のリンクをクリックしてください。
 すると、サーバを開くことができます。
 
-[▶ 開発サーバーを開く (http://localhost:3000)](http://localhost:3000)**
+<!-- [▶ 開発サーバーを開く (http://localhost:3000)](http://localhost:3000)** -->
+[開発サーバーを開く]({{TRAFFIC_HOST1_3000}})
 
 サーバーが開けたら、
