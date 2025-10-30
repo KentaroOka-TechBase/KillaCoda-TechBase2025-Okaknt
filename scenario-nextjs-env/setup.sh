@@ -81,3 +81,29 @@ fi
 touch /root/.setup-done
 echo "===== Environment setup completed successfully ====="
 echo "done" > /opt/.backgroundfinished
+
+# Node.js 展開済み（/opt/node に入っている前提）
+NODE_PREFIX="/opt/node"
+
+# 1) 永続的 PATH 追加（次回以降のシェルにも反映）
+cat >/etc/profile.d/99-node-path.sh <<'EOF'
+export PATH="/opt/node/bin:$PATH"
+EOF
+chmod +x /etc/profile.d/99-node-path.sh
+
+# 2) いま開いているシェル向けに即時 PATH 反映
+export PATH="/opt/node/bin:$PATH"
+
+# 3) 端末の種類に関係なく使えるよう、共通の場所にシンボリックリンク
+ln -sfn /opt/node/bin/node     /usr/local/bin/node
+ln -sfn /opt/node/bin/npm      /usr/local/bin/npm
+ln -sfn /opt/node/bin/npx      /usr/local/bin/npx
+ln -sfn /opt/node/bin/corepack /usr/local/bin/corepack || true
+
+# sanity check
+echo "===== node version check ====="
+node -v
+
+
+echo "===== npm version check ====="
+npm -v
