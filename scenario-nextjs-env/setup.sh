@@ -7,27 +7,39 @@ mkdir -p /var/log
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 echo "===== KillerCoda Environment Setup Start ====="
-
 export DEBIAN_FRONTEND=noninteractive
 
-# === 基本ツールのインストール ===
-echo ">>> Installing prerequisites..."
-apt update -y
-apt install -y curl git nodejs npm
+# === APT: 最小限だけ（高速化の要） ===
+echo ">>> Installing prerequisites (minimal)..."
+apt-get update -y -o Acquire::Retries=3
+apt-get install -y --no-install-recommends curl ca-certificates git xz-utils
+rm -rf /var/lib/apt/lists/*
 
-# === GitHubリポジトリからクローン ===
+# === Node.js: 公式バイナリを展開（依存ほぼゼロで一瞬） ===
+echo ">>> Installing Node.js from official binaries..."
+NODE_VERSION="20.17.0"            # LTS系に合わせて必要なら更新
+ARCH="x64"                         # KillerCodaはx86_64
+NODE_PREFIX="/opt/node"
+curl -fsSL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-${ARCH}.tar.xz" -o /tmp/node.tar.xz
+mkdir -p "${NODE_PREFIX}"
+tar -xJf /tmp/node.tar.xz -C "${NODE_PREFIX}" --strip-components=1
+rm -f /tmp/node.tar.xz
+# PATH 永続化
+echo 'export PATH=/opt/node/bin:$PATH' >/etc/profile.d/99-node-path.sh
+export PATH="/opt/node/bin:$PATH"
+node -v
+npm -v
+corepack enable || true   # 将来pnpm/yarnを使う場合の準備
+
+# === GitHubから教材を取得 ===
 echo ">>> Cloning repository..."
 TMP_DIR="/tmp/kc-repo"
 APP_DIR="/root/next-env-demo"
-
 rm -rf "$TMP_DIR" "$APP_DIR" || true
-
-# 進捗表示を有効 (--progress)
 git clone --depth=1 --progress \
   https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt "$TMP_DIR"
 
-# === Next.js アプリ配置 ===
-echo ">>> Setting up Next.js application..."
+echo ">>> Placing Next.js app..."
 if [ -d "$TMP_DIR/scenario-nextjs-env/next-env-demo" ]; then
   mv "$TMP_DIR/scenario-nextjs-env/next-env-demo" "$APP_DIR"
 elif [ -d "$TMP_DIR/next-env-demo" ]; then
@@ -36,44 +48,36 @@ else
   mv "$TMP_DIR" "$APP_DIR"
 fi
 
-# === node_modules をReleaseから取得 ===
+# === node_modules を Release から取得（最速ルート） ===
 echo ">>> Downloading prebuilt node_modules..."
 ASSET_URL="https://github.com/KentaroOka-TechBase/KillaCoda-TechBase2025-Okaknt/releases/download/v1.0.0/node_modules.tar.gz"
-
-# 再試行付きダウンロード（失敗時リトライ）
 MAX_RETRIES=5
 for i in $(seq 1 $MAX_RETRIES); do
   if curl -L --fail -o "$APP_DIR/node_modules.tar.gz" "$ASSET_URL"; then
-    echo ">>> node_modules.tar.gz downloaded successfully."
+    echo ">>> node_modules.tar.gz downloaded."
     break
   else
-    echo ">>> Download failed (try $i/$MAX_RETRIES), retrying in 5s..."
-    sleep 5
+    echo ">>> Download failed (try $i/$MAX_RETRIES), retrying in 3s..."
+    sleep 3
   fi
 done
 
-# === 展開 ===
+echo ">>> Preparing dependencies..."
+cd "$APP_DIR"
 if [ -f "$APP_DIR/node_modules.tar.gz" ]; then
-  echo ">>> Extracting node_modules..."
-  rm -rf "$APP_DIR/node_modules" || true
+  rm -rf node_modules || true
   tar -xzf "$APP_DIR/node_modules.tar.gz" -C "$APP_DIR"
-  echo ">>> node_modules extracted successfully."
+  echo ">>> node_modules extracted."
 else
-  echo "!!! node_modules.tar.gz not found, fallback to npm install..."
-  cd "$APP_DIR"
-  npm ci --no-audit --no-fund --prefer-offline || npm install --no-audit --no-fund
+  echo "!!! Tarball missing; fallback to npm ci/install (this is slower)"
+  if [ -f package-lock.json ]; then
+    npm ci --no-audit --no-fund --prefer-offline
+  else
+    npm install --no-audit --no-fund
+  fi
 fi
 
-# === ビルドテスト（任意、確認用）===
-if [ -f "$APP_DIR/package.json" ]; then
-  echo ">>> Checking package.json presence... OK"
-else
-  echo "!!! Warning: package.json not found at $APP_DIR"
-fi
-
-# === 完了処理 ===
+# === 完了 ===
 touch /root/.setup-done
 echo "===== Environment setup completed successfully ====="
-
-# === KillerCoda に完了通知 ===
 echo "done" > /opt/.backgroundfinished
