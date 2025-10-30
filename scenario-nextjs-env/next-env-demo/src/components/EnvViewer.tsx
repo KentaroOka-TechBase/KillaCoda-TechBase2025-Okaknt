@@ -14,12 +14,16 @@ export default function EnvViewer() {
   return (
     <div>
       <p>
-        <strong>Client-side (NEXT_PUBLIC_MESSAGE):</strong>{" "}
-        {process.env.NEXT_PUBLIC_MESSAGE ?? "(not available)"}
+        <strong>Client-side (CLIENT_MESSAGE):</strong>{" "}
+        この演習の名前は{process.env.CLIENT_MESSAGE ?? "(not available)"}です
+      </p>
+      <p>
+        <strong>Client-side (CLIENT_MESSAGE):</strong>{" "}
+        この演習の名前は{NEXT_PUBLIC_CLIENT_MESSAGE ?? "(not available)"}です
       </p>
       <p>
         <strong>Server-side (SECRET_MESSAGE):</strong>{" "}
-        {serverMessage ?? "(loading...)"}
+        この演習の名前は{serverMessage ?? "(loading...)"}です
       </p>
     </div>
   );
