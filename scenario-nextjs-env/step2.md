@@ -13,6 +13,7 @@ You can now run: cd /root/next-env-demo && npm run dev
 
 続いて、next-env-demoのフォルダに入り、アプリケーションを起動しましょう。
 以下のコマンドを実行して、next-env-demoフォルダ配下に移動し、npm run dev と入力してください。
+
 ```bash
 cd next-env-demo
 npm run dev
@@ -25,4 +26,13 @@ found 0 vulnerabilities　というメッセージが表示されたら、以下
 <!-- [▶ 開発サーバーを開く (http://localhost:3000)](http://localhost:3000)** -->
 [開発サーバーを開く]({{TRAFFIC_HOST1_3000}})
 
-サーバーが開けたら、
+サーバーが開けたら、表示されている文字列を読んでみましょう。
+ここに表示される文字列は、
+```bash
+/next-env-demo
+```
+/配下の .env.localフォルダで設定している環境変数を用い、
+```bash
+/next-env-demo/src/components/EnvViewer.tsx
+```
+によって環境変数を読みだして表示されています。
