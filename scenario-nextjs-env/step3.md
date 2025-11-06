@@ -1,19 +1,12 @@
-# Step 3: NEXT_PUBLICを外して挙動を確認
+# Step 3: 表示される文字列の確認
 
-`.env.local` を編集し、`NEXT_PUBLIC_` の有無による差を確認しましょう。
+ここに表示される文字列は、
+/next-env-demo配下の .env.localフォルダで設定している環境変数を用い、
+/next-env-demo/src/components/EnvViewer.tsx
+によって環境変数を読みだして表示されています。
 
-画面右上のTabボタンを押下してターミナルをもう一つ作り、　/next-env-demo　配下で以下のコマンドを実行し、.env.local の中身を読んでみましょう。
-
-```bash
-cat .env.local
-```
-
-どうやら環境変数は設定されているようですが、その値が反映されていないようです。
-インターネット検索などを用いていいので、この環境変数が反映されていない理由を調べてみてください。
-理由がわかったら、以下のコマンドで環境変数を修正ましょう。
-```bash
-vi .env.local
-```
-
-その後、一度タブを戻してから Ctrl + Cでサーバを閉じ、再度 npm run devしてください。
-無事に環境変数の値が設定されていたら演習完了です。
+実際にコードや値を確認してみましょう。
+画面中央付近の Editor ボタンを押下し、エディターを開いて
+/next-env-demo/src/components/EnvViewer.tsx　や
+/next-env-demo/.env.localの値を確認してみてください。
+![alt text](image-2.png)
