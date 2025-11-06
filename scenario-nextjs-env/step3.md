@@ -9,4 +9,5 @@
 画面中央付近の Editor ボタンを押下し、エディターを開いて
 /next-env-demo/src/components/EnvViewer.tsx　や
 /next-env-demo/.env.localの値を確認してみてください。
-![alt text](image-2.png)
+
+![Scan results](./image-2.png)
