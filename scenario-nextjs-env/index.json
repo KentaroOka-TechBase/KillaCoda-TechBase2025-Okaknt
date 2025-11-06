@@ -19,6 +19,10 @@
       {
         "title": "NEXT_PUBLICを外した場合の挙動を確認する",
         "text": "step3.md"
+      },
+      {
+        "title": "Step 4: 環境変数が設定されない謎",
+        "text": "step4.md"
       }
     ],
     "finish": {
