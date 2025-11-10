@@ -3,7 +3,7 @@ set -euo pipefail
 
 LOG_FILE="/var/log/setup.log"
 mkdir -p /var/log
-exec > >(tee -a "$LOG_FILE") 2>&1
+exec >>"$LOG_FILE" 2>&1
 
 # トレースはログファイルにだけ
 exec 9>>"$LOG_FILE"
