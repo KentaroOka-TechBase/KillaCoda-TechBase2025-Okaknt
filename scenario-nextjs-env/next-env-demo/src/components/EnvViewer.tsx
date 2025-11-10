@@ -15,7 +15,7 @@ export default function EnvViewer() {
     <div>
       <p>
         <strong>Client-side (CLIENT_MESSAGE):</strong>{" "}
-        この演習の名前は<span>{process.env.CLIENT_MESSAGE ?? "(not available)"}</span>です
+        <span>この演習の名前は{process.env.CLIENT_MESSAGE ?? "(not available)"}です</span>
       </p>
       <p>
         <strong>Client-side (CLIENT_MESSAGE):</strong>{" "}

@@ -1,6 +1,6 @@
 {
-  "title": "Next.js環境変数の理解演習（NEXT_PUBLIC編）",
-  "description": "Next.jsで環境変数を扱う際に、NEXT_PUBLICが付いていないとクライアント側で参照できないことを学びます。",
+  "title": "Next.js環境変数の理解演習",
+  "description": "Next.jsで環境変数を扱う際に、ある値が環境変数名の最初に付いていないとクライアント側で参照できないことを学びます。",
   "details": {
     "intro": {
       "text": "intro.md",
