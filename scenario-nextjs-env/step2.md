@@ -8,17 +8,6 @@ Setup completed successfully!
 You can now run: cd /root/next-env-demo && npm run dev
 ```
 
-その後、 ls -a　を実行し、`next-env-demo` が表示されれば初期セットアップは完了です。
-
-
-続いて、next-env-demoのフォルダに入り、アプリケーションを起動しましょう。
-以下のコマンドを実行して、next-env-demoフォルダ配下に移動し、npm run dev と入力してください。
-
-```bash
-cd next-env-demo
-npm run dev
-```
-
 数分待機することで、サーバが立ち上がります。
 found 0 vulnerabilities　というメッセージが表示されたら、以下のリンクをクリックしてください。
 しばらく待機すると、別タブでサーバが開きます。
@@ -26,4 +15,5 @@ found 0 vulnerabilities　というメッセージが表示されたら、以下
 <!-- [▶ 開発サーバーを開く (http://localhost:3000)](http://localhost:3000)** -->
 [開発サーバーを開く]({{TRAFFIC_HOST1_3000}})
 
-サーバーが開けたら、表示されている文字列を読んでみましょう。
+サーバーが開けたら、表示されている文字列を読んでみましょう。<br>
+読み終えたら「NEXT」のボタンを押下してください。

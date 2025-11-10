@@ -11,3 +11,4 @@
 /next-env-demo/.env.localの値を確認してみてください。
 
 ![Scan results](./image-2.png)
+値を確認したら、「NEXT」のボタンを押下してください。
