@@ -95,3 +95,6 @@ echo "===== node version check ====="
 node -v
 echo "===== npm version check ====="
 npm -v
+
+cd next-env-demo
+npm run dev
