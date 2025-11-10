@@ -75,10 +75,9 @@ else
   fi
 fi
 
-# 完了フラグ＆KillerCoda通知
+# 完了フラグ＆KillerCoda通知（サーバー起動前に完了通知）
 touch /root/.setup-done
 echo "===== Environment setup completed successfully ====="
-echo "done" > /opt/.backgroundfinished
 
 # Nodeを確実に使えるようパス＆リンク
 cat >/etc/profile.d/99-node-path.sh <<'EOF'
@@ -96,5 +95,49 @@ node -v
 echo "===== npm version check ====="
 npm -v
 
+# ===== ここからバックグラウンド起動と起動検知 =====
+APP_DIR="/root/next-env-demo"
+DEV_LOG="/var/log/next-dev.log"
+PID_FILE="/var/run/next-dev.pid"
+READY_FLAG="/opt/.appready"
+
+echo ">>> Starting Next.js dev server in background..."
+# 指示通り 'cd next-env-demo' と 'npm run dev' はオプションなし
+# バックグラウンド化のために nohup と '&' を使用（npm run dev 自体にはオプションを付けていません）
+cd /root
 cd next-env-demo
-npm run dev
+nohup npm run dev > "$DEV_LOG" 2>&1 &
+
+SERVER_PID=$!
+mkdir -p /var/run
+echo "$SERVER_PID" > "$PID_FILE"
+echo ">>> Next.js dev server PID: $SERVER_PID (logs: $DEV_LOG, pid: $PID_FILE)"
+
+# KillerCodaの「セットアップ完了」表示はすぐに出す
+echo "done" > /opt/.backgroundfinished
+
+# 起動検知（最大90秒、1秒間隔で http://localhost:3000 をポーリング）
+echo ">>> Waiting for server to become ready on http://localhost:3000 ..."
+READY=0
+for i in $(seq 1 90); do
+  if curl -fsS http://localhost:3000/ >/dev/null 2>&1; then
+    READY=1
+    break
+  fi
+  # 途中でプロセスが落ちていないか確認
+  if ! kill -0 "$SERVER_PID" >/dev/null 2>&1; then
+    echo "!!! Next.js dev server process exited early. See $DEV_LOG"
+    break
+  fi
+  sleep 1
+done
+
+if [ "$READY" -eq 1 ]; then
+  echo ">>> Next.js dev server is UP at http://localhost:3000"
+  date +"ready at %Y-%m-%d %H:%M:%S" > "$READY_FLAG"
+  echo ">>> Ready flag written to $READY_FLAG"
+else
+  echo "!!! Next.js dev server did not become ready within timeout."
+  echo ">>> Last 50 lines of $DEV_LOG:"
+  tail -n 50 "$DEV_LOG" || true
+fi
