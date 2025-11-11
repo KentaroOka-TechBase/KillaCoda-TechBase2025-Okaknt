@@ -17,5 +17,5 @@
 **/next-env-demo/.env.local**の値を確認してみてください。
 
 エディターを使う場合、画面は以下のようになります。
-![Scan results](assets/editor_image.png)
+![Scan results](assets/editorimage.png)
 値を確認したら、「NEXT」のボタンを押下してください。
