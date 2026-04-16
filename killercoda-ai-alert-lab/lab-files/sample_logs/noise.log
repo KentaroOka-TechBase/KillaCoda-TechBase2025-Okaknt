@@ -1,0 +1,3 @@
+2026-04-09T01:00:01Z INFO payment worker heartbeat ok
+2026-04-09T01:00:05Z DEBUG payment polling loop retry timeout=100ms
+2026-04-09T01:00:06Z INFO payment status check timeout recovered automatically

@@ -1,0 +1,3 @@
+2026-04-09T03:14:01Z INFO payment worker heartbeat ok
+2026-04-09T03:14:05Z ERROR payment gateway timeout caused checkout failure for order=1842
+2026-04-09T03:14:06Z ERROR customer impact confirmed, retry queue growing

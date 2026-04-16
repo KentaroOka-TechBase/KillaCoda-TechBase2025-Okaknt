@@ -1,0 +1,7 @@
+services:
+  monitor:
+    image: alpine:3.20
+    command: ["sh", "-lc", "sleep infinity"]
+    working_dir: /lab
+    volumes:
+      - ./:/lab

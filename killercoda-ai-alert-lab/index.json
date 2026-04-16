@@ -1,0 +1,29 @@
+{
+  "title": "AI-Suggested Alert Rule Fix",
+  "description": "A short Docker-based incident lab where an AI-generated alert suppression rule hides a real production error.",
+  "difficulty": "Beginner",
+  "time": "10 minutes",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "foreground": "setup.sh"
+    },
+    "steps": [
+      {
+        "title": "Investigate the Incident",
+        "text": "step1.md"
+      },
+      {
+        "title": "Verify the Fix",
+        "text": "step2.md",
+        "verify": "step2/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
