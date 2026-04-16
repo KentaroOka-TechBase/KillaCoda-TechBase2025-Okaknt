@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+chmod +x /root/lab/lab-files/check_alert.sh
 cd /root/lab/lab-files
 
 real_output="$(docker compose exec -T monitor sh -lc 'cd /lab && sh ./check_alert.sh sample_logs/real_incident.log')"
