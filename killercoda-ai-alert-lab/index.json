@@ -21,6 +21,40 @@
     ],
     "finish": {
       "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "lab-files/docker-compose.yml",
+          "target": "/root/lab/lab-files",
+          "chmod": "+w"
+        },
+        {
+          "file": "lab-files/ai_note.md",
+          "target": "/root/lab/lab-files",
+          "chmod": "+w"
+        },
+        {
+          "file": "lab-files/check_alert.sh",
+          "target": "/root/lab/lab-files",
+          "chmod": "+x"
+        },
+        {
+          "file": "lab-files/monitor/alert_rules.conf",
+          "target": "/root/lab/lab-files/monitor",
+          "chmod": "+w"
+        },
+        {
+          "file": "lab-files/sample_logs/real_incident.log",
+          "target": "/root/lab/lab-files/sample_logs",
+          "chmod": "+w"
+        },
+        {
+          "file": "lab-files/sample_logs/noise.log",
+          "target": "/root/lab/lab-files/sample_logs",
+          "chmod": "+w"
+        }
+      ]
     }
   },
   "backend": {
