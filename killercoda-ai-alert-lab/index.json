@@ -1,6 +1,6 @@
 {
-  "title": "AI-Suggested Alert Rule Fix",
-  "description": "A short Docker-based incident lab where an AI-generated alert suppression rule hides a real production error.",
+  "title": "AIが提案したアラート抑制ルールの修正",
+  "description": "AIが生成したアラート抑制ルールにより、本来検知すべき本番障害が見逃される状態を修正するDockerベースの短時間演習です。",
   "difficulty": "Beginner",
   "time": "10 minutes",
   "details": {
