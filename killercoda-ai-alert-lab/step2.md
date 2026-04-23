@@ -6,8 +6,8 @@
 
 ```bash
 cd /root/lab/lab-files
-docker compose exec -T monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/real_incident.log"
-docker compose exec -T monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/noise.log"
+docker exec ai-alert-monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/real_incident.log"
+docker exec ai-alert-monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/noise.log"
 ```
 
 望ましい結果は次のとおりです。

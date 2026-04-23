@@ -5,20 +5,6 @@ rm -rf /root/lab/lab-files
 mkdir -p /root/lab/lab-files/monitor
 mkdir -p /root/lab/lab-files/sample_logs
 
-cat > /root/lab/lab-files/.env <<'EOF'
-COMPOSE_PROJECT_NAME=ai-alert-lab
-EOF
-
-cat > /root/lab/lab-files/docker-compose.yml <<'EOF'
-services:
-  monitor:
-    image: alpine:3.20
-    command: ["sh", "-lc", "sleep infinity"]
-    working_dir: /lab
-    volumes:
-      - ./:/lab
-EOF
-
 cat > /root/lab/lab-files/ai_note.md <<'EOF'
 # AIへの相談メモ
 
@@ -93,6 +79,7 @@ EOF
 
 cd /root/lab/lab-files
 chmod +x check_alert.sh
-docker compose up -d
+docker rm -f ai-alert-monitor >/dev/null 2>&1 || true
+docker run -d --name ai-alert-monitor -w /lab -v /root/lab/lab-files:/lab alpine:3.20 sh -lc "sleep infinity"
 
 echo "Environment is ready under /root/lab/lab-files"

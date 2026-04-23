@@ -18,9 +18,9 @@ cd /root/lab/lab-files
 ```bash
 cat ai_note.md
 cat monitor/alert_rules.conf
-docker compose ps
-docker compose exec -T monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/real_incident.log"
-docker compose exec -T monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/noise.log"
+docker ps --filter name=ai-alert-monitor
+docker exec ai-alert-monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/real_incident.log"
+docker exec ai-alert-monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/noise.log"
 ```
 
 ## 期待される気づき
@@ -36,6 +36,6 @@ docker compose exec -T monitor sh -lc "cd /lab && sh ./check_alert.sh sample_log
 編集後は再度チェックします。
 
 ```bash
-docker compose exec -T monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/real_incident.log"
-docker compose exec -T monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/noise.log"
+docker exec ai-alert-monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/real_incident.log"
+docker exec ai-alert-monitor sh -lc "cd /lab && sh ./check_alert.sh sample_logs/noise.log"
 ```

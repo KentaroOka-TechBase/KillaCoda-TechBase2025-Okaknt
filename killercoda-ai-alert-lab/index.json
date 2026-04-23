@@ -25,11 +25,6 @@
     "assets": {
       "host01": [
         {
-          "file": "lab-files/docker-compose.yml",
-          "target": "/root/lab/lab-files",
-          "chmod": "+w"
-        },
-        {
           "file": "lab-files/ai_note.md",
           "target": "/root/lab/lab-files",
           "chmod": "+w"
