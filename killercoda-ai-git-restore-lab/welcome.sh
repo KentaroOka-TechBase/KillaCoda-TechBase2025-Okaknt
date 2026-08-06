@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 READY_FLAG="/root/.git-restore-setup-done"
 
