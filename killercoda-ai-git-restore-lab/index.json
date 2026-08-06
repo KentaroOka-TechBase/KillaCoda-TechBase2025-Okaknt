@@ -1,16 +1,17 @@
 {
-  "title": "AI支援ツールにより退避されたGit管理を復旧せよ",
-  "description": "AI支援ツールの安全機能が誤作動し、.git が .git_disabled に退避されたワークスペースを復旧する短時間演習です。",
+  "title": "AIが退避したGit管理を復旧させよう",
+  "description": "AI支援ツールの誤操作で .git が .git_disabled に退避されたワークスペースを復旧する短時間演習です。",
   "difficulty": "Beginner",
   "time": "10 minutes",
   "details": {
     "intro": {
       "text": "intro.md",
-      "foreground": "bash setup.sh"
+      "background": "setup.sh",
+      "foreground": "welcome.sh"
     },
     "steps": [
       {
-        "title": "調査する",
+        "title": "状態を調べる",
         "text": "step1.md"
       },
       {

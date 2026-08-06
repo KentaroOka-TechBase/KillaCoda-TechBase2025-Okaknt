@@ -3,6 +3,9 @@ set -euo pipefail
 
 WORKROOT="/root/lab"
 WORKDIR="$WORKROOT/workspace"
+READY_FLAG="/root/.git-restore-setup-done"
+
+rm -f "$READY_FLAG"
 
 if ! command -v git >/dev/null 2>&1; then
   export DEBIAN_FRONTEND=noninteractive
@@ -43,4 +46,5 @@ git add .
 git commit -m "Initial commit" >/dev/null 2>&1
 mv .git .git_disabled
 
+touch "$READY_FLAG"
 echo "Workspace prepared at $WORKDIR"
