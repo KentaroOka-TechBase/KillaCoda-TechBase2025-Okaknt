@@ -1,6 +1,6 @@
 {
   "title": "AIが退避したGit管理を復旧させよう",
-  "description": "AI支援ツールの誤操作で .git が .git_disabled に退避されたワークスペースを復旧する短時間演習です。",
+  "description": "AI支援ツールでコードを修正した後、Git コマンドが使えなくなりました。ワークスペースを調査し、Git 管理を復旧する短時間演習です。",
   "difficulty": "Beginner",
   "time": "10 minutes",
   "details": {
