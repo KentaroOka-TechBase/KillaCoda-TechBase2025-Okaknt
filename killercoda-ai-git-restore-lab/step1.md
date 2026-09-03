@@ -43,9 +43,10 @@ Brain には、例えば次のように質問してみてください。
 ```text
 Git status says this is not a Git repository.
 What should I investigate first?
+```
 英語で質問すると、より安定して回答を得られます。
 </details>
-```
+
 
 <details>
 <summary>ヒント 4: 解決手順を確認する（最終手段）</summary>
